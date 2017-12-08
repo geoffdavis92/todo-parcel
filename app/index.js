@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import TaskClear from "./components/TaskClear";
 import TaskEntry from "./components/TaskEntry";
 import Container from "./shared/Container";
+import { ToDo } from "./utils/classes";
 
 export default class App extends React.Component {
 	constructor() {
@@ -13,18 +14,18 @@ export default class App extends React.Component {
 		this.state = {
 			currentItemID: 4,
 			openItems: [
-				{ id: 0, content: "Ut non commodo laborum minim." },
-				{
+				new ToDo({ id: 0, content: "Ut non commodo laborum minim." }),
+				new ToDo({
 					id: 1,
 					content:
 						"Et ad commodo esse nisi enim tempor eiusmod amet cillum aute."
-				},
-				{ id: 2, content: "Magna eu Lorem est pariatur enim." },
-				{
+				}),
+				new ToDo({ id: 2, content: "Magna eu Lorem est pariatur enim." }),
+				new ToDo({
 					id: 3,
 					content:
 						"Ex pariatur et nostrud id Lorem consequat aliqua aliquip nostrud."
-				}
+				})
 			],
 			completedItems: []
 		};
@@ -39,7 +40,7 @@ export default class App extends React.Component {
 			currentItemID: prevState.currentItemID + 1,
 			openItems: [
 				...prevState.openItems,
-				{ id: prevState.currentItemID, content }
+				new ToDo({ id: prevState.currentItemID, content })
 			]
 		}));
 	}
@@ -83,7 +84,11 @@ export default class App extends React.Component {
 		});
 	}
 	clearCompletedTasks() {
-		this.setState(prevState => ({ completedItems: [] }));
+		this.setState(prevState => ({
+			// currentItemID:
+			// 	prevState.openItems.length <= 0 ? 0 : prevState.currentItemID,
+			completedItems: []
+		}));
 	}
 	updateAppState({ content, id, mode }) {
 		this[mode]({ id, content });

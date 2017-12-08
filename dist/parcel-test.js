@@ -26305,7 +26305,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var ToDo = function () {
   function ToDo() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      content: "",
+      createdAt: new Date(Date.now()),
+      expiresAt: false
+    },
         id = _ref.id,
         content = _ref.content,
         createdAt = _ref.createdAt,
@@ -26316,9 +26320,9 @@ var ToDo = function () {
     // Properties
     this.content = content;
     this.id = id;
-    this.completeDate = false;
     this.createDate = createdAt;
     this.expireDate = expiresAt;
+    this.completeDate;
     // Methods
     this.complete = this.complete.bind(this);
     this.isExpired = this.isExpired.bind(this);
@@ -26439,7 +26443,7 @@ var Task = function (_React$Component) {
       }, function () {
         _this3.props.updateTasksState({
           id: _this3.props.taskID,
-          mode: _this3.props.inCompletedView ? "openItem" : "completeItem"
+          mode: !_this3.state.checked ? "openItem" : "completeItem"
         });
       });
     }
@@ -26886,6 +26890,8 @@ var _Container = require("./shared/Container");
 
 var _Container2 = _interopRequireDefault(_Container);
 
+var _classes = require("./utils/classes");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -26906,13 +26912,13 @@ var App = function (_React$Component) {
 
     _this.state = {
       currentItemID: 4,
-      openItems: [{ id: 0, content: "Ut non commodo laborum minim." }, {
+      openItems: [new _classes.ToDo({ id: 0, content: "Ut non commodo laborum minim." }), new _classes.ToDo({
         id: 1,
         content: "Et ad commodo esse nisi enim tempor eiusmod amet cillum aute."
-      }, { id: 2, content: "Magna eu Lorem est pariatur enim." }, {
+      }), new _classes.ToDo({ id: 2, content: "Magna eu Lorem est pariatur enim." }), new _classes.ToDo({
         id: 3,
         content: "Ex pariatur et nostrud id Lorem consequat aliqua aliquip nostrud."
-      }],
+      })],
       completedItems: []
     };
     _this.createItem = _this.createItem.bind(_this);
@@ -26931,7 +26937,7 @@ var App = function (_React$Component) {
       this.setState(function (prevState) {
         return {
           currentItemID: prevState.currentItemID + 1,
-          openItems: [].concat(_toConsumableArray(prevState.openItems), [{ id: prevState.currentItemID, content: content }])
+          openItems: [].concat(_toConsumableArray(prevState.openItems), [new _classes.ToDo({ id: prevState.currentItemID, content: content })])
         };
       });
     }
@@ -27000,7 +27006,11 @@ var App = function (_React$Component) {
     key: "clearCompletedTasks",
     value: function clearCompletedTasks() {
       this.setState(function (prevState) {
-        return { completedItems: [] };
+        return {
+          // currentItemID:
+          // 	prevState.openItems.length <= 0 ? 0 : prevState.currentItemID,
+          completedItems: []
+        };
       });
     }
   }, {
@@ -27067,7 +27077,7 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = App;
-},{"react":3,"react-router-dom":20,"./pages/Tasks":10,"./components/Header":11,"./components/TaskClear":116,"./components/TaskEntry":12,"./shared/Container":13}],2:[function(require,module,exports) {
+},{"react":3,"react-router-dom":20,"./pages/Tasks":10,"./components/Header":11,"./components/TaskClear":116,"./components/TaskEntry":12,"./shared/Container":13,"./utils/classes":19}],2:[function(require,module,exports) {
 "use strict";
 
 var _react = require("react");

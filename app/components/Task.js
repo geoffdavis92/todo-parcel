@@ -49,7 +49,7 @@ export default class Task extends React.Component {
 			() => {
 				this.props.updateTasksState({
 					id: this.props.taskID,
-					mode: this.props.inCompletedView ? "openItem" : "completeItem"
+					mode: !this.state.checked ? "openItem" : "completeItem"
 				});
 			}
 		);
