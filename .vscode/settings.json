@@ -1,0 +1,9 @@
+{
+	"javascript.validate.enable": false,
+	"flow.stopFlowOnExit": true,
+	"flow.enabled": true,
+	"flow.useNPMPackagedFlow": false,
+	"flow.showStatus": true,
+	"flow.runOnEdit": true,
+	"flow.runOnAllFiles": false
+}

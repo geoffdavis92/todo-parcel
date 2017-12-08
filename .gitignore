@@ -1,0 +1,3 @@
+# parcel-test ignores... 
+node_modules 
+*cache*
