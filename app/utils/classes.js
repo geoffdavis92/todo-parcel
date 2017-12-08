@@ -8,13 +8,15 @@ class ToDo {
 	_newDate: Function;
 	constructor(
 		{
+			id,
 			content,
 			createdAt,
 			expiresAt
-		}: { content: string, createdAt: Date, expiresAt: Date } = {}
+		}: { id: number, content: string, createdAt: Date, expiresAt: Date } = {}
 	) {
 		// Properties
 		this.content = content;
+		this.id = id;
 		this.completeDate = false;
 		this.createDate = createdAt;
 		this.expireDate = expiresAt;

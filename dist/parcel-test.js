@@ -26306,6 +26306,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var ToDo = function () {
   function ToDo() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        id = _ref.id,
         content = _ref.content,
         createdAt = _ref.createdAt,
         expiresAt = _ref.expiresAt;
@@ -26314,6 +26315,7 @@ var ToDo = function () {
 
     // Properties
     this.content = content;
+    this.id = id;
     this.completeDate = false;
     this.createDate = createdAt;
     this.expireDate = expiresAt;
